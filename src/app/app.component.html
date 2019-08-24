@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header *ngIf="currentMovie" (startNewSearch)="startNewSearch()"></app-header>
 <main>
   <div class="containter">
     <display-movie class="row" [movie]="currentMovie"></display-movie>

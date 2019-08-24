@@ -18,4 +18,8 @@ export class AppComponent {
       this.currentMovie = movie
     })
   }
+
+  startNewSearch(){
+    this.movieService.changeSelectedMovie(null)
+  }
 }
