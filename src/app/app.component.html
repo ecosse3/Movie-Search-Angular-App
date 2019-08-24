@@ -2,7 +2,7 @@
 <main>
   <div class="containter">
     <display-movie class="row" [movie]="currentMovie"></display-movie>
-    <search-movie class="row"></search-movie>
+    <search-movie *ngIf="!currentMovie" class="row"></search-movie>
   </div>
 </main>
 <app-footer></app-footer>

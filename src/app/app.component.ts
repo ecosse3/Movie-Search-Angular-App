@@ -9,7 +9,7 @@ import { MovieService } from './movie.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  currentMovie:Movie = data[0]
+  currentMovie:Movie = null
 
   constructor(private movieService:MovieService){
     movieService
