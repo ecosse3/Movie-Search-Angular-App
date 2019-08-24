@@ -5,13 +5,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
 import { DisplayMovieComponent } from './display-movie.component';
 import { SearchComponent } from './search/search.component';
+import { MoviePreviewComponent } from './search/movie-preview.component';
+import { FooterComponent } from './footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DisplayMovieComponent,
-    SearchComponent
+    SearchComponent,
+    MoviePreviewComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule
