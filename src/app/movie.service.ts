@@ -1,20 +1,8 @@
-import {
-  Injectable
-} from '@angular/core';
-import {
-  Subject,
-  Observable
-} from 'rxjs'
-import {
-  HttpClient,
-  HttpParams
-} from '@angular/common/http'
-import {
-  Movie
-} from './Movie'
-import {
-  map
-} from 'rxjs/operators'
+import { Injectable } from '@angular/core';
+import { Subject, Observable } from 'rxjs'
+import { HttpClient, HttpParams } from '@angular/common/http'
+import { Movie } from './Movie'
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +13,7 @@ export class MovieService {
   private baseApiUrl: string = "https://api.themoviedb.org/3/search/movie"
   private baseConfigurationUrl: string = "https://api.themoviedb.org/3/configuration"
   private imageBaseUrl: string = ""
-  private imageSizes: {
-    backdrop ? : string[],
-    poster ? : string[]
-  } = {}
+  private imageSizes: { backdrop ? : string[], poster ? : string[] } = {}
 
   constructor(private http: HttpClient) {
     this.setImageConfiguration()
@@ -40,9 +25,7 @@ export class MovieService {
 
   searchMovie(query: string) {
     const params = new HttpParams().set('api_key', this.apiKey).set('query', query)
-    return this.http.get < any > (this.baseApiUrl, {
-        params
-      })
+    return this.http.get < any > (this.baseApiUrl, { params })
       .pipe(map(res =>
         res.results.map((result: Movie) => {
           return {
@@ -60,7 +43,7 @@ export class MovieService {
 
   setImageConfiguration() {
     const params = new HttpParams().set('api_key', this.apiKey)
-    this.http.get<any>(this.baseConfigurationUrl, {
+    this.http.get < any > (this.baseConfigurationUrl, {
         params
       })
       .pipe(map(res => res))
@@ -78,10 +61,7 @@ export class MovieService {
     if (!path) {
       return ""
     }
-    const {
-      backdrop,
-      poster
-    } = this.imageSizes
+    const { backdrop, poster } = this.imageSizes
     const imageSize = isBackdrop ? backdrop[0] : poster[poster.length - 1]
     return `${this.imageBaseUrl}${imageSize}${path}`
   }
