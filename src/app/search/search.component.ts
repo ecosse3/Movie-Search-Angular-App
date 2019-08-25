@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { data } from '../mock-data'
+import { Component, OnInit } from '@angular/core'
 import { Movie } from '../Movie'
 import { MovieService } from '../movie.service'
 import { Subject } from 'rxjs'
@@ -12,7 +11,7 @@ import { map, debounceTime } from 'rxjs/operators'
   styles: []
 })
 export class SearchComponent implements OnInit {
-  searchResults:Movie[] = data
+  searchResults:Movie[] = []
   search$:Subject<string> = new Subject<string>()
   fetching:boolean = false
   search:string = ""
@@ -28,7 +27,16 @@ export class SearchComponent implements OnInit {
   }
 
   searchQuery(query:string){
-    console.log(query)
+    if(query.length > 0) {
+    this.movieService.searchMovie(query)
+                      .subscribe((results)=>{
+                        this.fetching = false
+                        this.searchResults = results
+                      })
+  } else {
+    this.fetching = false
+    this.searchResults = []
+    }
   }
 
   setCurrentMovie(movie:Movie){
